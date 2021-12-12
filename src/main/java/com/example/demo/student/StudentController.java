@@ -40,4 +40,16 @@ public class StudentController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("error from deleteStudent");
         }
     }
+    @PutMapping(path = "{studentId}")
+    public ResponseEntity updateUserNameAndEmail(@PathVariable("studentId")Long studentId,
+                                                 @RequestParam(required = false)String name,
+                                                 @RequestParam(required = false)String email){
+        try{
+        studentService.updateUserNameAndEmail(studentId,name,email);
+            return ResponseEntity.ok(HttpStatus.OK);
+        }catch( IllegalStateException error){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("error from registerNewStudent");
+        }
+
+    }
 }
