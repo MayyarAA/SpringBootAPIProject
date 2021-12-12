@@ -32,4 +32,9 @@ public class StudentService {
         studentRepository.save(student);
         System.out.println(student);
     }
+
+    public void deleteStudent(Long studentId) throws IllegalStateException{
+        if(!(studentRepository.existsById(studentId))) throw new IllegalStateException("Error: student does not exist");
+        studentRepository.deleteById(studentId);
+    }
 }

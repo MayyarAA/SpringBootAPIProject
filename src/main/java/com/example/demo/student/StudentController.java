@@ -30,4 +30,14 @@ public class StudentController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("error from registerNewStudent");
         }
     }
+
+    @DeleteMapping(path = "{studentId}")
+    public ResponseEntity deleteStudent(@PathVariable("studentId")Long studentId){
+        try{
+            studentService.deleteStudent(studentId);
+            return ResponseEntity.ok(HttpStatus.OK);
+        }catch(IllegalStateException error){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("error from deleteStudent");
+        }
+    }
 }
